@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --body-color: #fafafa;
+  --nav-bg: #F5F6FF;
+  --course-color: #FF3A29;
+  --course-col2: #02A0FC;
+  --course-col3: #FFE5D3;
+  --course-col4: #FFB200;
+  --course-col5: #00ff2ace;
+  --nav-color: rgb(28, 28, 252);
+  --title-color: #000000;
+  --input-filed: #ffffff;
+  --text-color: #94959a;
+  --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --all-font: "Montserrat", sans-serif;
+
+  /* font weight */
+  --font-th: 100;
+  --font-el: 200;
+  --font-lh: 300;
+  --font-rg: 400;
+  --font-md: 500;
+  --font-sb: 600;
+  --font-bold: 700;
+  --font-eb: 800;
+  --font-blk: 900;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: var(--body-color);
+  font-family: var(--all-font);
+}
+
+.form-img {
+  width: 30rem;
+}
+
+.logo-img {
+  margin: 1rem 3rem 0;
+  width: 10rem;
+}
+
+
