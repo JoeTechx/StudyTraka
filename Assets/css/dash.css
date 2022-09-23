@@ -1,16 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
   --body-color: #fafafa;
-  --nav-bg: #F5F6FF;
-  --course-color: #FF3A29;
-  --course-col2: #02A0FC;
-  --course-col3: #FFE5D3;
-  --course-col4: #FFB200;
+  --nav-bg: #f5f6ff;
+  --course-color: #ff3a29;
+  --course-col2: #02a0fc;
+  --course-col3: #ffe5d3;
+  --course-col4: #ffb200;
   --course-col5: #00ff2ace;
   --nav-color: rgb(28, 28, 252);
   --title-color: #000000;
   --input-filed: #ffffff;
   --text-color: #94959a;
+  --text-color2: #333333;
   --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   --all-font: "Montserrat", sans-serif;
 
@@ -29,7 +30,16 @@
 * {
   margin: 0;
   padding: 0;
+  outline: 0;
+  appearance: none;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
   box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
 }
 
 *:focus {
@@ -37,21 +47,162 @@
 }
 
 body {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background-color: var(--body-color);
+  width: 100vw;
+  height: 100vh;
   font-family: var(--all-font);
+  font-size: 0.88rem;
+  background: var(--body-color);
+  user-select: none;
+  overflow-x: hidden;
+  color: var(--text-color);
 }
 
-.form-img {
-  width: 30rem;
+.container {
+  display: grid;
+  width: 96%;
+  margin: 0 auto 0 0;
+  gap: 1rem;
+  grid-template-columns: 13rem auto 23rem;
 }
 
-.logo-img {
-  margin: 1rem 3rem 0;
-  width: 10rem;
+* {
+  color: var(--text-color2);
 }
 
+img {
+  display: block;
+  width: 100%;
+}
+h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
 
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 0.87rem;
+}
+
+h4 {
+  font-size: 0.8rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+.profile_photo,
+.link_photo {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.link_photo {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ========== ASIDE ========= */
+aside {
+  height: auto;
+  background: var(--input-filed);
+  padding: 6px;
+  width: 150%;
+}
+
+aside .top {
+  display: flex;
+  align-items: center;
+  margin: 3rem 4px 0 0.9rem;
+}
+aside .logo {
+  position: relative;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+aside .logo img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.bars {
+  margin: 3rem 40px 1rem 1.9rem;
+  display: flex;
+}
+
+aside .close {
+  position: absolute;
+  border: 1px solid var(--text-color);
+  border-radius: 0.5rem;
+  width: 1.49rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+aside .menu_bar {
+  display: none;
+}
+
+aside .close .bi-x:hover,
+.close:hover,
+.bx-menu:hover {
+  color: var(--nav-color);
+  border-color: var(--nav-color);
+}
+
+/* ====================== SIDEBAR ==================== */
+aside .sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+aside h3 {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+aside .sidebar a {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  align-items: center;
+  position: relative;
+  height: 3rem;
+  margin: 0.9rem 40px 0 1.6rem;
+  transition: all 600ms ease;
+}
+
+aside .sidebar a.active {
+  background: var(--nav-bg);
+  color: var(--nav-color);
+  margin: 2rem 40px 0 1.6rem;
+}
+.uil-estate {
+  color: var(--nav-color);
+}
+
+aside .sidebar a.active,i {
+  font-size: 1.25rem;
+  transition: all 600ms ease;
+}
+
+aside .sidebar a:hover i {
+  color: var(--nav-color);
+}
+
+aside .sidebar a:hover {
+  color: var(--nav-color);
+  background: var(--nav-bg);
+}
