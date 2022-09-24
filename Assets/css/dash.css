@@ -116,7 +116,7 @@ aside {
   height: auto;
   background: var(--input-filed);
   padding: 6px;
-  width: 150%;
+  width: 170%;
 }
 
 aside .top {
@@ -181,19 +181,21 @@ aside .sidebar a {
   position: relative;
   height: 3rem;
   margin: 0.9rem 40px 0 1.6rem;
+  margin: 0.9rem 25px 0 1.6rem;
   transition: all 600ms ease;
 }
 
 aside .sidebar a.active {
   background: var(--nav-bg);
   color: var(--nav-color);
-  margin: 2rem 40px 0 1.6rem;
+  margin: 0.9rem 25px 0 1.6rem;
 }
 .uil-estate {
   color: var(--nav-color);
 }
 
-aside .sidebar a.active,i {
+aside .sidebar a.active,
+i {
   font-size: 1.25rem;
   transition: all 600ms ease;
 }
@@ -205,4 +207,80 @@ aside .sidebar a:hover i {
 aside .sidebar a:hover {
   color: var(--nav-color);
   background: var(--nav-bg);
+}
+
+/* ====== countdown ======= */
+.countdown {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--nav-bg);
+  margin: 0.9rem 25px 25px 1.6rem;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.count_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+.count_text p {
+  font-weight: var(--font-md);
+}
+
+.uil-exclamation-triangle {
+  color: var(--nav-color);
+}
+
+.count_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.mwd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.hms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+}
+
+.num {
+  background-color:rgba(255, 255, 255, 0.6);
+  font-size: 2.6rem;
+  font-weight: var(--font-md);
+  padding: 0.6rem 1.3rem;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+.text {
+  font-weight: var(--font-bold);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color:var(--text-color);
+  margin-top: 0.5rem;
+}
+
+.semiColoumn{
+  font-weight: var(--font-sb);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
 }
