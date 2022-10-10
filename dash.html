@@ -93,8 +93,37 @@
           </a>
         </div>
 
-        <div class="countdown"></div>
-        
+        <div class="countdown">
+          <div class="count_text">
+            <i class="uil uil-exclamation-triangle"></i>
+            <p>Countdown to Exam</p>
+          </div>
+          <div class="count_input">
+            <div class="mwd">
+              <div class="time">
+                <h4 class="num months">00</h4>
+                <span class="text">months</span>
+              </div>
+              <p class="semiColoumn">:</p>
+              <div class="time">
+                <h4 class="num weeks">00</h4>
+                <span class="text">days</span>
+              </div>
+              <p class="semiColoumn">:</p>
+              <div class="time">
+                <h4 class="num days">00</h4>
+                <span class="text">hours</span>
+              </div>
+            </div>
+
+            <div class="hms">
+              <h4 class="minutes">00 :</h4>
+              <h4 class="seconds">00</h4>
+            </div>
+            <i class="bi bi-alarm timer__btn--reset"></i>
+            <i class="bi bi-play-fill timer__btn--control"></i>
+          </div>
+        </div>
 
         <div class="profile">
           <div class="profile_photo">
@@ -115,6 +144,30 @@
         </div>
       </aside>
     </div>
-    <script src="./Assets/js/dash.js" type="module"></script>
+    <!-- modal -->
+    <div class="modal__overlay">
+      <div class="modal__container">
+        <h1>CUSTOM<span>DATE</span>PICKER</h1>
+        <div class="time_start"></div>
+          <div class="date_start"></div>
+          <div class="inp_fill">
+              <input type="text" id="input" class="year" placeholder="Year" required>
+           
+              <input type="text" id="input" class="Months" placeholder="Months" required>
+           
+              <input type="text" id="input" class="Date" placeholder="Date" required>
+          
+              <input type="text" id="input" class="Hours" placeholder="Hours" required>
+         
+              <input type="text" id="input" class="Min" placeholder="Min" required>        
+          
+              <input type="text" id="input" class="Sec" placeholder="Sec" required>
+         
+          </div>
+          <button class="submit-btn">set</button>
+      </div>
+    </div>
+
+    <script src="./Assets/js/dash.js"></script>
   </body>
 </html>

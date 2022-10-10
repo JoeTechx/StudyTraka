@@ -14,6 +14,23 @@
   --text-color2: #333333;
   --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   --all-font: "Montserrat", sans-serif;
+  --max-width: 1170px;
+  --fixed-width: 620px;
+
+    /* ====== calender ====== */
+
+    --dark-text: #f8fbff;
+    --light-body: #f3f8fe;
+    --light-main: #fdfdfd;
+    --light-second: #c3c2c8;
+    --light-hover: #f0f0f0;
+    --light-text: #151426;
+    --light-btn: #9796f0;
+    --blue: #0000ff;
+    --white: #fff;
+    --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --font-family: consolas;
+
 
   /* font weight */
   --font-th: 100;
@@ -263,7 +280,7 @@ aside .sidebar a:hover {
   margin: 1rem auto;
 }
 
-.num {
+.mwd h4{
   background-color: rgba(255, 255, 255, 0.6);
   font-size: 1.5rem;
   font-weight: var(--font-md);
@@ -320,4 +337,73 @@ aside .sidebar a:hover {
   left: 1.6rem;
   width: 1.4rem;
   height: 1.4rem;
+}
+
+/* modal */
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  /* visibility: hidden; */
+  z-index:100;
+  /* transition: 1s ease-out; */
+  /* transform: translate(0%, -50%)scale(0.1); */
+  /* transition: 1.5s cubic-bezier(.47, -0.79, 0, 1.87); */
+}
+
+.modal__container {
+  background: #fff;
+  border-radius: 0.7rem;
+  width: 50%;
+  max-width: var(--fixed-width);
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  place-items: center;
+  padding: 70px 44px;
+  position: relative;
+  opacity: 1;
+  /* margin:0 auto; */
+}
+
+.inp_fill{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+place-items: center;
+}
+input{
+/* background-color: var( --light-second); */
+margin-bottom: 1rem;
+border-bottom: 1px solid;
+border-color: var(--light-second);
+padding: 2rem 0.3rem 0;
+width: 30%;
+}
+
+input:focus{
+  border-color: var(--light-btn);
+}
+.submit-btn {
+  border-radius: 5px;
+  background-color: var(--input-filed);
+  border: none;
+  color: var(--input-text);
+  transition: 0.5s;
+  text-transform: capitalize;
+  width: auto;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  margin: 50px auto 0;
+  box-shadow: var(--shadow);
+}
+
+.submit-btn:hover {
+  background-color: var(--nav-bg);
+  color: var(--input-text);
 }
