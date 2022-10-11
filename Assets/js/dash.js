@@ -62,7 +62,7 @@ setInterval(() => {
  
 const submit = document.querySelector('.submit_btn');
 const futureDateElement = document.querySelector('.future_date')
-const futureDateInput = document.querySelector('.future_date')
+const futureDateInput = document.querySelector('.future_date--input')
 
 submit.addEventListener('click', () =>{
   const MONTHS = [
@@ -90,10 +90,24 @@ submit.addEventListener('click', () =>{
   ];
 
 let dateInput = futureDateInput.value
+let month =  dateInput.getMonth();
+month = MONTHS[month]
+let day = DAYS[dateInput.getDay()];
+let date = dateInput.getDate();
+let year = dateInput.getFullYear();
+
 // console.log("DAYS[dateInput.getDay()]", MONTHS[dateInput.getMonth()], dateInput.getDate(), dateInput.getFullYear());
-futureDateElement.textContent = `${DAYS[dateInput.getDay()]},${MONTHS[dateInput.getMonth()]} ${dateInput.getDate()} ${dateInput.getFullYear()}`;
+futureDateElement.textContent =
+ `
+${day}
+${month}
+${date},
+${year}
+  `;
 });
 
+
+// let futureDate = new Date()
 
 
 
