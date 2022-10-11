@@ -1,7 +1,7 @@
 
 
-const timeElement = document.querySelector('.time_start')
-const dateElement = document.querySelector('.date_start')
+const timeElement = document.querySelector('.current_time');
+const dateElement = document.querySelector('.current_date');
 
 
 /** 
@@ -60,10 +60,39 @@ setInterval(() => {
 
 
  
+const submit = document.querySelector('.submit_btn');
+const futureDateElement = document.querySelector('.future_date')
+const futureDateInput = document.querySelector('.future_date')
 
+submit.addEventListener('click', () =>{
+  const MONTHS = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const DAYS= [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-
-
+let dateInput = futureDateInput.value
+// console.log("DAYS[dateInput.getDay()]", MONTHS[dateInput.getMonth()], dateInput.getDate(), dateInput.getFullYear());
+futureDateElement.textContent = `${DAYS[dateInput.getDay()]},${MONTHS[dateInput.getMonth()]} ${dateInput.getDate()} ${dateInput.getFullYear()}`;
+});
 
 
 

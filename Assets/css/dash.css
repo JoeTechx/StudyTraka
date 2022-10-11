@@ -26,6 +26,7 @@
     --light-hover: #f0f0f0;
     --light-text: #151426;
     --light-btn: #9796f0;
+    --light-btn2: #8888ba;
     --blue: #0000ff;
     --white: #fff;
     --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -374,8 +375,8 @@ aside .sidebar a:hover {
 
 .inp_fill{
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-place-items: center;
+grid-template-columns: repeat(1, 1fr);
+/* place-items: left; */
 }
 input{
 /* background-color: var( --light-second); */
@@ -383,13 +384,13 @@ margin-bottom: 1rem;
 border-bottom: 1px solid;
 border-color: var(--light-second);
 padding: 2rem 0.3rem 0;
-width: 30%;
+width: 100%;
 }
 
 input:focus{
   border-color: var(--light-btn);
 }
-.submit-btn {
+.submit_btn {
   border-radius: 5px;
   background-color: var(--input-filed);
   border: none;
@@ -407,3 +408,28 @@ input:focus{
   background-color: var(--nav-bg);
   color: var(--input-text);
 }
+
+.dateTime{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-left: 5rem;
+}
+
+.current_dateTime{
+  text-align: left;
+  border-left: var(--light-btn) 5px solid;
+  border-radius: 5px;
+  padding-left: 0.2rem;
+  line-height: 1.3rem;
+}
+
+.future_dateTime{
+  text-align: left;
+  border-left: var(--light-btn2) 5px solid;
+  border-radius: 5px;
+  padding-left: 0.2rem;
+  line-height: 1.3rem;
+}
+
