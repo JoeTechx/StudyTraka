@@ -360,6 +360,7 @@ aside .sidebar a:hover {
   background: #fff;
   border-radius: 0.7rem;
   width: 50%;
+  /* height: 60%; */
   max-width: var(--fixed-width);
   text-align: center;
   display: grid;
@@ -368,7 +369,19 @@ aside .sidebar a:hover {
   padding: 70px 44px;
   position: relative;
   opacity: 1;
-  /* margin:0 auto; */
+  margin:0 auto;
+}
+
+.customDT{
+  margin:0 14rem;
+}
+
+.modal__container h1{
+  margin-right: 3rem;
+}
+.modal__container h1 span{
+font-weight: 600;
+color: var(--text-color);
 }
 
 .inp_fill {
@@ -398,8 +411,11 @@ input:focus {
   width: auto;
   padding: 1rem 2rem;
   cursor: pointer;
-  margin: 50px auto 0;
+  margin: 50px auto 40px;
   box-shadow: var(--shadow);
+  position: relative;
+    top: 7rem;
+    right: 13.5rem;
 }
 
 .submit-btn:hover {
@@ -418,17 +434,35 @@ input:focus {
 .current_dateTime {
   text-align: left;
   border-left: var(--light-btn) 5px solid;
+  margin: -2rem 0 0 0;
   border-radius: 5px;
   padding-left: 0.2rem;
   line-height: 1.3rem;
+  position: absolute;
+  top: 10.3rem;
+  left: 9rem;
 }
 
-.future_dateTime {
-  text-align: left;
-  border-left: var(--light-btn2) 5px solid;
-  border-radius: 5px;
-  padding-left: 0.2rem;
-  line-height: 1.3rem;
+@media screen and (max-width: 680px) {
+  .customDT{
+    margin:0 auto;
+  }
+
+  .current_dateTime { 
+    margin: -3.3rem 0 0 0;
+    left: 7.8rem;
+  }
+
+  .modal__container {
+    /* background: burlywood; */
+    width: 90%;
+    padding: 40px 20px;
+  }
+  .dateTime {
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+  }
 }
 
 @media screen and (max-width: 500px) {

@@ -147,14 +147,15 @@
     <!-- modal -->
     <div class="modal__overlay">
       <div class="modal__container">
+        <div class="customDT">
         <h1>CUSTOM<span>DATE</span>PICKER</h1>
         <div class="dateTime">
           <div class="current_dateTime">
         <div class="current_time"></div>
           <div class="current_date"></div>
         </div>
-
-        <div class="future_dateTime">
+<date-picker format="MMMM DD (DDDD), YYYY" date="01-01-2022" position="top"></date-picker>
+        <!-- <div class="future_dateTime">
           <div class="future_time">09:00:39 AM</div>
           <div class="future_date">Monday November 21, 2022</div>
         </div>
@@ -165,10 +166,12 @@
               <input type="text" id="input" class="future_date--input" placeholder="Date" required>       
               <input type="text" id="input" class="Hours" placeholder="Time" required>
          
-          </div>
+          </div> -->
           <button class="submit_btn">set</button>
       </div>
     </div>
+    </div>
+  </div>
 
     <script src="./Assets/js/dash.js"></script>
   </body>

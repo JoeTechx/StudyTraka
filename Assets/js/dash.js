@@ -249,6 +249,163 @@ class Calendar{
 //   console.log(month)
 // }
 
+class DatePicker extends HTMLElement{
+  format = 'MMM DD, YYYY';
+  position = 'bottom';
+  visible = 'false';
+  date = null;
+  mounted = false;
+//elements
+toggleButton = null;
+calendarDropdown = null;
+  constructor(){
+    super();
+
+    const lang = window.navigator.language;
+    const date =new Date(this.date ?? (this.getAttribute("date") || Date.now()))
+
+    this.shadow = this.attachShadow({mode: 'open'})
+    this.date = new Day(date, lang);
+    this.Calendar = new Calendar(this.date.year, this.date.monthNumber, lang)
+
+    this.format = this.getAttribute('format') || this.format;
+    this.position = DatePicker.position.includes(this.getAttribute("position"))
+    ? this.getAttribute('position')
+    : this.position;
+    this.visible = this.getAttribute('visible') === ''
+    || this.getAttribute('visible') === 'true'
+    || this.visible;
+
+    this.render();
+
+  }
+
+  connectedCallback() {
+    this.mounted = true;
+
+    this.toggleButton = this.shadow.querySelector(".date-toggle");
+    this.calendarDropDown = this.shadow.querySelector(".calendar-dropdown");
+
+    this.toggleButton.addEventListener('click', () => this.toggleCalendar())
+  }
+toggleCalendar( visible = null) {
+  if(visible === null){
+    this.calendarDropDown.classList.toggle('visible');
+  }else if(visible){
+    this.calendarDropDown.classList.add('visible');
+  }else {
+    this.calendarDropDown.classList.remove('visible');
+  }
+
+  this.visible = this.calendarDropDown.className.includes('visible')
+}
+  static get position(){
+    return['top', 'left', 'bottom', 'right']
+  }
+  get style(){
+    return`
+    :host{
+      position: relative;
+      font-family: "Montserrat", sans-serif;
+    left: 5rem;
+    width: 100%;
+    }
+
+
+    .future_dateTime {
+      text-align: left;
+      border-left: var(--light-btn2) 5px solid;
+      border-radius: 5px;
+      padding-left: 0.2rem;
+      line-height: 1.3rem;
+      margin-top: 1rem;
+      position: absolute;
+      left: 5rem;
+    }
+
+    .date-toggle {
+      padding: 8px 5px;
+      border: none;
+      font-family: "Montserrat", sans-serif;
+      border-bottom: 1px solid;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: none;
+      color:#94959a;
+      // border-radius: 6px;
+      font-weight: 600;
+      padding-right: 0rem;
+      cursor: pointer;
+      text-transform: capitalize;
+      text-align: left;
+      border-color: var(--light-second);
+    }
+
+    .inp_fill {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      // place-items: left; 
+      // background-color: var( --light-second);
+      position: relative;
+      top: 5rem;
+      right: 4rem;
+    width: 18rem;
+    margin-bottom: 5rem;
+    }
+    input {
+      border: none;
+      outline: none;
+      /* background-color: var( --light-second); */
+      margin-bottom: 1rem;
+      border-bottom: 1px solid;
+      border-color: var(--light-second);
+      padding: 1rem 0.3rem 0;
+      width: 97%;
+    }
+    input:focus {
+      border-color: var(--light-btn);
+    }
+
+    @media screen and (max-width: 680px) {
+      .inp_fill {
+        margin-top: 1rem;
+        margin-bottom: 10rem;
+      }
+    }
+
+    calendar-dropdown{
+      display: none;
+    }
+
+    calendar-dropdown.visible{
+      display: block;
+    }
+    `;
+  }
+
+  render(){
+    const date = this.date.format(this.format)
+this.shadow.innerHTML =`
+<style>${this.style}</style>
+        <div class="future_dateTime">
+          <div class="future_time">09:00:39 AM</div>
+          <div class="future_date">${date}</div>
+        </div>
+
+<div class="inp_fill">
+ <button type='button' class=' date-toggle'>${date}</button>  
+ <div class="calendar-dropdown ${this.visible ? 'visible' : ''} ${this.position}"></div>
+<!--<input type="text" id="input" class="future_date--input" placeholder="Date" required value="${date}"> -->
+<!--<input type="text" id="input" class="Hours" placeholder="Time" required>-->
+         
+</div>
+
+`
+  }
+}
+
+customElements.define("date-picker", DatePicker);
 
 
 
