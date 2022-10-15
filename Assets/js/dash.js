@@ -1,26 +1,27 @@
+const timeElement = document.querySelector(".current_time");
+const dateElement = document.querySelector(".current_date");
 
-
-const timeElement = document.querySelector('.current_time');
-const dateElement = document.querySelector('.current_date');
-
-
-/** 
+/**
  * @param{Date} date
  */
-function formatTime(date){
+function formatTime(date) {
   const hours12 = date.getHours() % 12 || 12;
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const isAm = date.getHours() < 12;
 
-  return `${hours12.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${isAm ? "AM" : "PM"}`;
+  return `${hours12.toString().padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${
+    isAm ? "AM" : "PM"
+  }`;
 }
 
-/** 
+/**
  * @param{Date} date
  */
 
-function formatDate(date){
+function formatDate(date) {
   const Months = [
     "January",
     "February",
@@ -45,84 +46,78 @@ function formatDate(date){
     "Saturday",
   ];
 
-  return `${DAYS[date.getDay()]}, ${Months[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`;
+  return `${DAYS[date.getDay()]}, ${
+    Months[date.getMonth()]
+  } ${date.getDate()} ${date.getFullYear()}`;
 }
-
 
 setInterval(() => {
   const current = new Date();
-  
 
   timeElement.textContent = formatTime(current);
   dateElement.textContent = formatDate(current);
-  
 }, 200);
 
-
-function getWeekNumber(date){
+function getWeekNumber(date) {
   const firstDayOfTheYear = new Date(date.getFullYear(), 0, 1);
   const pastDaysOfYear = (date - firstDayOfTheYear) / 86400000;
 
-  return Math.ceil((pastDaysOfYear + firstDayOfTheYear.getDay() + 1) / 7)
+  return Math.ceil((pastDaysOfYear + firstDayOfTheYear.getDay() + 1) / 7);
 }
 
-function isLeapYear(year){
+function isLeapYear(year) {
   return year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
 }
 
 class Day {
-  constructor(date = null, lang = 'default'){
+  constructor(date = null, lang = "default") {
     date = date ?? new Date();
 
     this.Date = date;
     this.date = date.getDate();
-    this.day = date.toLocaleString(lang, { weekday: 'long'})
+    this.day = date.toLocaleString(lang, { weekday: "long" });
     this.dayNumber = date.getDay() + 1;
-    this.dayShort =date.toLocaleString(lang, { weekday: 'short'});
+    this.dayShort = date.toLocaleString(lang, { weekday: "short" });
     this.year = date.getFullYear();
-    this.yearShort = Number(
-      date.toLocaleString(lang, {year: '2-digit'})
-    );
-    this.monthNumber = Number(
-      date.toLocaleString(lang, {month: '2-digit'})
-    );
-    this.month = date.toLocaleString(lang, {month: 'long'})
-    this.monthShort = date.toLocaleString(lang, {month: 'short'})
-    this. timestamp = date.getTime();
+    this.yearShort = Number(date.toLocaleString(lang, { year: "2-digit" }));
+    this.monthNumber = Number(date.toLocaleString(lang, { month: "2-digit" }));
+    this.month = date.toLocaleString(lang, { month: "long" });
+    this.monthShort = date.toLocaleString(lang, { month: "short" });
+    this.timestamp = date.getTime();
     this.hour = date.getHours();
     this.minute = date.getMinutes();
     this.seconds = date.getSeconds();
-    this.week = getWeekNumber(date)
+    this.week = getWeekNumber(date);
   }
 
-  get isToday(){
+  get isToday() {
     return this.isEqualTo(new Date());
   }
 
-  isEqualTo(date){
+  isEqualTo(date) {
     date = date instanceof Day ? date.Date : date;
 
-    return (date.getDate() === this.date &&
-    date.getMonth() === this.monthNumber - 1 && 
-    date.getFullYear() === this.year
+    return (
+      date.getDate() === this.date &&
+      date.getMonth() === this.monthNumber - 1 &&
+      date.getFullYear() === this.year
     );
   }
 
-  format(formatStr){
+  format(formatStr) {
     return formatStr
-    .replace(/\bYYYY\b/, this.year)
-    .replace(/\bYYY\b/, this.yearShort)
-    .replace(/\bWW\b/, this.week.toString().padStart(2, '0'))
-    .replace(/\bW\b/, this.week)
-    .replace(/\bDDDD\b/, this.day)
-    .replace(/\bDDD\b/, this.dayShort)
-    .replace(/\bDD\b/, this.date.toString().padStart(2, '0'))
-    .replace(/\bD\b/, this.date)
-    .replace(/\bMMMM\b/, this.month)
-    .replace(/\bMMM\b/, this.monthShort)
-    .replace(/\bMM\b/, this.monthNumber.toString().padStart(2, '0'))
-    .replace(/\bM\b/, this.monthNumber)
-    
+      .replace(/\bYYYY\b/, this.year)
+      .replace(/\bYYY\b/, this.yearShort)
+      .replace(/\bWW\b/, this.week.toString().padStart(2, "0"))
+      .replace(/\bW\b/, this.week)
+      .replace(/\bDDDD\b/, this.day)
+      .replace(/\bDDD\b/, this.dayShort)
+      .replace(/\bDD\b/, this.date.toString().padStart(2, "0"))
+      .replace(/\bD\b/, this.date)
+      .replace(/\bMMMM\b/, this.month)
+      .replace(/\bMMM\b/, this.monthShort)
+      .replace(/\bMM\b/, this.monthNumber.toString().padStart(2, "0"))
+      .replace(/\bM\b/, this.monthNumber);
   }
 }
 
@@ -130,34 +125,33 @@ class Day {
 
 // console.log('--day', day, day.format('MM (MMM, MMMM) DD ( DDD, DDDD/WW), YYYY YYY') )
 
-class Month{
-  constructor (date = null, lang = "default"){
+class Month {
+  constructor(date = null, lang = "default") {
     const day = new Day(date, lang);
-    const monthSize = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    const monthSize = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     this.lang = lang;
 
     this.name = day.month;
     this.number = day.monthNumber;
     this.year = day.year;
-    this.numberOfDays = monthSize[this.number - 1]
+    this.numberOfDays = monthSize[this.number - 1];
 
-    if(this.number === 2){
-    this.numberOfDays += isLeapYear(day.year) ? 1 : 0;
+    if (this.number === 2) {
+      this.numberOfDays += isLeapYear(day.year) ? 1 : 0;
     }
     this[Symbol.iterator] = function* () {
       let number = 1;
       yield this.getDay(number);
-      while(number < this.numberOfDays){
+      while (number < this.numberOfDays) {
         ++number;
-        yield this.getDay(number)
+        yield this.getDay(number);
       }
-    }
+    };
   }
 
-  getDay(date){
-    return new Day( new Date(this.year, this.number - 1, date), this.lang)
+  getDay(date) {
+    return new Day(new Date(this.year, this.number - 1, date), this.lang);
   }
-
 }
 
 // const month = new Month()
@@ -166,78 +160,85 @@ class Month{
 
 // console.log([...month])
 
-class Calendar{
-  weekDays = Array.from({length: 7})
-  constructor(year = null, monthNumber = null, lang = 'default') {
-    this.today = new Day(null, lang)
+class Calendar {
+  weekDays = Array.from({ length: 7 });
+  constructor(year = null, monthNumber = null, lang = "default") {
+    this.today = new Day(null, lang);
     this.year = year ?? this.today.year;
-    this.month = new Month(new Date(this.year, (monthNumber || this.today.monthNumber) - 1), lang);
+    this.month = new Month(
+      new Date(this.year, (monthNumber || this.today.monthNumber) - 1),
+      lang
+    );
     this.lang = lang;
 
     this[Symbol.iterator] = function* () {
       let number = 1;
       yield this.getMonth(number);
-      while(number < 12){
+      while (number < 12) {
         ++number;
-        yield this.getMonth(number)
+        yield this.getMonth(number);
       }
-    }
+    };
 
     this.weekDays.forEach((_, i) => {
       const day = this.month.getDay(i + 1);
-      if(!this.weekDays.includes(day.day)){
-        this.weekDays[day.dayNumber - 1] = day.day; 
+      if (!this.weekDays.includes(day.day)) {
+        this.weekDays[day.dayNumber - 1] = day.day;
       }
-    })
+    });
   }
-    get isLeapYear(){
-      return isLeapYear(this.year);
-    }
-  getMonth(monthNumber){
+  get isLeapYear() {
+    return isLeapYear(this.year);
+  }
+  getMonth(monthNumber) {
     return new Month(new Date(this.year, monthNumber - 1), this.lang);
   }
 
   getPreviousMonth() {
-    if(this.month.number === 1)
-    {
+    if (this.month.number === 1) {
       return new Month(new Date(this.year - 1, 11), this.lang);
     }
-    
-      return new Month(new Date(this.year, this.month.number - 2), this.lang);
+
+    return new Month(new Date(this.year, this.month.number - 2), this.lang);
   }
 
-  getNextMonth(){
-    if(this.month.number === 12)
-    {
+  getNextMonth() {
+    if (this.month.number === 12) {
       return new Month(new Date(this.year + 1, 0), this.lang);
     }
-      return new Month(new Date(this.year, this.month.number + 2), this.lang);
+    return new Month(new Date(this.year, this.month.number + 2), this.lang);
   }
 
-  goToDate(monthNumber, year){
+  goToDate(monthNumber, year) {
     this.month = new Month(new Date(year, monthNumber - 1), this.lang);
     this.year = year;
   }
-  goToNextYear(){
+  goToNextYear() {
     this.year += 1;
     this.month = new Month(new Date(this.year, 0), this.lang);
   }
 
-  goToNextYear(){
+  goToNextYear() {
     this.year -= 1;
-    this.month = new Month(new Date(this.year,  11), this.lang);
+    this.month = new Month(new Date(this.year, 11), this.lang);
   }
-  goToNextMonth(){
-    if(this.month.number === 12)   {
+  goToNextMonth() {
+    if (this.month.number === 12) {
       return this.goToNextYear();
     }
-      this.month = new Month(new Date(this.year, (this.month.number + 1) - 1), this.lang);
-    }
-  goToPreviousMonth(){
-    if(this.month.number === 12)   {
+    this.month = new Month(
+      new Date(this.year, this.month.number + 1 - 1),
+      this.lang
+    );
+  }
+  goToPreviousMonth() {
+    if (this.month.number === 12) {
       return this.goToPreviousYear();
     }
-      this.month = new Month(new Date(this.year, (this.month.number - 1) - 1), this.lang);
+    this.month = new Month(
+      new Date(this.year, this.month.number - 1 - 1),
+      this.lang
+    );
   }
 }
 
@@ -249,35 +250,37 @@ class Calendar{
 //   console.log(month)
 // }
 
-class DatePicker extends HTMLElement{
-  format = 'MMM DD, YYYY';
-  position = 'bottom';
-  visible = 'false';
+class DatePicker extends HTMLElement {
+  format = "MMM DD, YYYY";
+  position = "bottom";
+  visible = "false";
   date = null;
   mounted = false;
-//elements
-toggleButton = null;
-calendarDropdown = null;
-  constructor(){
+  //elements
+  toggleButton = null;
+  calendarDropdown = null;
+  constructor() {
     super();
 
     const lang = window.navigator.language;
-    const date =new Date(this.date ?? (this.getAttribute("date") || Date.now()))
+    const date = new Date(
+      this.date ?? (this.getAttribute("date") || Date.now())
+    );
 
-    this.shadow = this.attachShadow({mode: 'open'})
+    this.shadow = this.attachShadow({ mode: "open" });
     this.date = new Day(date, lang);
-    this.Calendar = new Calendar(this.date.year, this.date.monthNumber, lang)
+    this.Calendar = new Calendar(this.date.year, this.date.monthNumber, lang);
 
-    this.format = this.getAttribute('format') || this.format;
+    this.format = this.getAttribute("format") || this.format;
     this.position = DatePicker.position.includes(this.getAttribute("position"))
-    ? this.getAttribute('position')
-    : this.position;
-    this.visible = this.getAttribute('visible') === ''
-    || this.getAttribute('visible') === 'true'
-    || this.visible;
+      ? this.getAttribute("position")
+      : this.position;
+    this.visible =
+      this.getAttribute("visible") === "" ||
+      this.getAttribute("visible") === "true" ||
+      this.visible;
 
     this.render();
-
   }
 
   connectedCallback() {
@@ -286,29 +289,29 @@ calendarDropdown = null;
     this.toggleButton = this.shadow.querySelector(".date-toggle");
     this.calendarDropDown = this.shadow.querySelector(".calendar-dropdown");
 
-    this.toggleButton.addEventListener('click', () => this.toggleCalendar())
+    this.toggleButton.addEventListener("click", () => this.toggleCalendar());
   }
-toggleCalendar( visible = null) {
-  if(visible === null){
-    this.calendarDropDown.classList.toggle('visible');
-  }else if(visible){
-    this.calendarDropDown.classList.add('visible');
-  }else {
-    this.calendarDropDown.classList.remove('visible');
-  }
+  toggleCalendar(visible = null) {
+    if (visible === null) {
+      this.calendarDropDown.classList.toggle("visible");
+    } else if (visible) {
+      this.calendarDropDown.classList.add("visible");
+    } else {
+      this.calendarDropDown.classList.remove("visible");
+    }
 
-  this.visible = this.calendarDropDown.className.includes('visible')
-}
-  static get position(){
-    return['top', 'left', 'bottom', 'right']
+    this.visible = this.calendarDropDown.className.includes("visible");
   }
-  get style(){
-    return`
+  static get position() {
+    return ["top", "left", "bottom", "right"];
+  }
+  get style() {
+    return `
     :host{
       position: relative;
       font-family: "Montserrat", sans-serif;
-    left: 5rem;
-    width: 100%;
+      left: 5rem;
+      width: 100%;
     }
 
 
@@ -376,6 +379,7 @@ toggleCalendar( visible = null) {
 
     calendar-dropdown{
       display: none;
+      position: absolute;
     }
 
     calendar-dropdown.visible{
@@ -384,9 +388,10 @@ toggleCalendar( visible = null) {
     `;
   }
 
-  render(){
-    const date = this.date.format(this.format)
-this.shadow.innerHTML =`
+  render() {
+    const monthYear = `${this.calendar.month.name}, ${this.calendar.year}`;
+    const date = this.date.format(this.format);
+    this.shadow.innerHTML = `
 <style>${this.style}</style>
         <div class="future_dateTime">
           <div class="future_time">09:00:39 AM</div>
@@ -395,40 +400,26 @@ this.shadow.innerHTML =`
 
 <div class="inp_fill">
  <button type='button' class=' date-toggle'>${date}</button>  
- <div class="calendar-dropdown ${this.visible ? 'visible' : ''} ${this.position}"></div>
+ <div class="calendar-dropdown ${this.visible ? "visible" : ""} ${
+      this.position}">
+<div class="header">
+<button type="button" class="prev-month" aria-label="previous month"></button>
+  <h4 tabindex="0" aria-label="current month ${monthYear}"> 
+    ${monthYear}
+  </h4>
+  <button type="button" class="prev-month" aria-label="next month"></button>
+</div>
+    </div>
 <!--<input type="text" id="input" class="future_date--input" placeholder="Date" required value="${date}"> -->
 <!--<input type="text" id="input" class="Hours" placeholder="Time" required>-->
          
 </div>
 
-`
+`;
   }
 }
 
 customElements.define("date-picker", DatePicker);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import Timer from "./Timer.js";
 
