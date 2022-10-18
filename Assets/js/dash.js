@@ -218,7 +218,7 @@ class Calendar {
     this.month = new Month(new Date(this.year, 0), this.lang);
   }
 
-  goToNextYear() {
+  goToPreviousYear() {
     this.year -= 1;
     this.month = new Month(new Date(this.year, 11), this.lang);
   }
@@ -227,7 +227,7 @@ class Calendar {
       return this.goToNextYear();
     }
     this.month = new Month(
-      new Date(this.year, this.month.number + 1 - 1),
+      new Date(this.year, (this.month.number + 1) - 1),
       this.lang
     );
   }
@@ -236,7 +236,7 @@ class Calendar {
       return this.goToPreviousYear();
     }
     this.month = new Month(
-      new Date(this.year, this.month.number - 1 - 1),
+      new Date(this.year, (this.month.number - 1) - 1),
       this.lang
     );
   }
@@ -258,7 +258,7 @@ class DatePicker extends HTMLElement {
   mounted = false;
   //elements
   toggleButton = null;
-  calendarDropdown = null;
+  calendarDropDown = null;
   constructor() {
     super();
 
@@ -269,7 +269,7 @@ class DatePicker extends HTMLElement {
 
     this.shadow = this.attachShadow({ mode: "open" });
     this.date = new Day(date, lang);
-    this.Calendar = new Calendar(this.date.year, this.date.monthNumber, lang);
+    this.calendar = new Calendar(this.date.year, this.date.monthNumber, lang);
 
     this.format = this.getAttribute("format") || this.format;
     this.position = DatePicker.position.includes(this.getAttribute("position"))
@@ -377,19 +377,19 @@ class DatePicker extends HTMLElement {
       }
     }
 
-    calendar-dropdown{
+    .calendar-dropdown{
       display: none;
       position: absolute;
     }
 
-    calendar-dropdown.visible{
+    .calendar-dropdown.visible{
       display: block;
     }
     `;
   }
 
   render() {
-    const monthYear = `${this.calendar.month.name}, ${this.calendar.year}`;
+  const monthYear = `${this.calendar.month.name}, ${this.calendar.year}`;
     const date = this.date.format(this.format);
     this.shadow.innerHTML = `
 <style>${this.style}</style>
@@ -400,16 +400,17 @@ class DatePicker extends HTMLElement {
 
 <div class="inp_fill">
  <button type='button' class=' date-toggle'>${date}</button>  
- <div class="calendar-dropdown ${this.visible ? "visible" : ""} ${
-      this.position}">
-<div class="header">
-<button type="button" class="prev-month" aria-label="previous month"></button>
-  <h4 tabindex="0" aria-label="current month ${monthYear}"> 
-    ${monthYear}
-  </h4>
-  <button type="button" class="prev-month" aria-label="next month"></button>
+ <div class="calendar-dropdown ${this.visible ? "visible" : ""} ${this.position}">
+ <div class="header">
+ <button type="button" class="prev-month" aria-label="previous month"></button>
+<h4>
+${monthYear}
+</h4>
+
+ <button type="button" class="next-month" aria-label="next month"></button>
 </div>
-    </div>
+
+ </div>
 <!--<input type="text" id="input" class="future_date--input" placeholder="Date" required value="${date}"> -->
 <!--<input type="text" id="input" class="Hours" placeholder="Time" required>-->
          
